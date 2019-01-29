@@ -21,9 +21,16 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
+      vars:
+        # Without slash at the end!
+        jenkins_base_url: http://jenkins.mycompany.com
+        # Jenkins p
+        jenkins_project: my-dummy-project
+        jenkins_download_temp_dir: /tmp 
+        # 
+        jenkins_user: admin
+        jenkins_password: your-password-goes-here
       roles:
          - { role: username.rolename, x: 42 }
 
