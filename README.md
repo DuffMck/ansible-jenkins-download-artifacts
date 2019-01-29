@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/DuffMck/ansible-role-jenkins-download-artifacts.svg?branch=master)](https://travis-ci.com/DuffMck/ansible-role-jenkins-download-artifacts)
+
 Download Jenkins Artifact Role
 =========
 
