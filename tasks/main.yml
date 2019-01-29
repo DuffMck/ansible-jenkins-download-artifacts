@@ -1,2 +1,23 @@
 ---
-# tasks file for download-jenkins-artifacts
+- name: "Jenkins - Getting project info (from {{ jenkins_base_url }}{{ jenkins_project }}/lastStableBuild/api/json?pretty=true) "
+  uri:
+    url: "{{ jenkins_base_url }}{{ jenkins_project }}/lastStableBuild/api/json?pretty=true"
+    return_content: yes
+    body_format: json
+    url_username: "{{ jenkins_user }}"
+    url_password: "{{ jenkins_password }}"
+    force_basic_auth: yes
+  register: last_stable_build
+- name: Verify fetched infos
+  debug: 
+    msg: "{{ jenkins_base_url }}{{ jenkins_project }}/lastStableBuild/artifact/{{ item.relativePath }}"
+  with_items: "{{ last_stable_build.json.artifacts }}"
+- name: Jenkins - Download artifacts from Jenkins
+  get_url: 
+    url: "{{ jenkins_base_url }}{{ jenkins_project }}/lastStableBuild/artifact/{{ item.relativePath }}"
+    dest: "{{ jenkins_download_temp_dir }}/{{ item.fileName }}"
+    url_username: "{{ jenkins_user }}"
+    url_password: "{{ jenkins_password }}"
+    force_basic_auth: yes
+    force: true
+  with_items: "{{ last_stable_build.json.artifacts }}"

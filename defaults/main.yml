@@ -1,2 +1,7 @@
 ---
-# defaults file for download-jenkins-artifacts
+jenkins_base_url: 
+jenkins_project: 
+jenkins_download_temp_dir: 
+
+jenkins_user: admin
+jenkins_password: d2c55e55773d9f3c63e384963561c2cc
